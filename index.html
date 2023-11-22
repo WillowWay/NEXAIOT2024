@@ -18,11 +18,47 @@
     <h1_2>綠色產品雙認證解決方案</h1_2>
     
     <div class="btn1_1">
-        <a href="http://192.168.1.2:10200/main" target="_blank"><img src="img/HomeW_95x95.png"></a>
+        <a href="http://192.168.1.2:10200/main" onclick="sendApiRequest()"><img src="img/HomeW_95x95.png"></a>
     </div>
     <div class="btn1_2">
         <a href="TestQR.html" ><img src="img/qrcode_95x95.png"></a>
     </div>
+
+    <script>
+        // 处理按钮点击事件的JavaScript函数
+        function sendApiRequest() {
+            // 创建一个XMLHttpRequest对象
+            var xhr = new XMLHttpRequest();
+    
+            // 配置API请求
+            var apiUrl = "http://192.168.1.2:10000/VW_SERVICE?VW_CMD=NAME_PAGE&VW_PARAM=Home";
+            xhr.open("GET", apiUrl, true);
+    
+            // 添加自定义标头
+            xhr.setRequestHeader("Authorization", "VW_Token : 12345678");
+            //xhr.setRequestHeader("Authorization", "Bearer YourAccessToken");
+            // 添加其他标头，根据需要进行修改
+            // xhr.setRequestHeader("Content-Type", "application/json");
+    
+            // 定义处理响应的回调函数
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        // 处理API响应
+                        var response = JSON.parse(xhr.responseText);
+                        console.log(response);
+                        // 在这里可以执行其他操作，根据API响应更新页面等
+                    } else {
+                        // 处理请求错误
+                        console.error("API请求失败", xhr.status, xhr.statusText);
+                    }
+                }
+            };
+    
+            // 发送API请求
+            xhr.send();
+        }
+    </script>
 
     <script>
         function openLink(event) {
