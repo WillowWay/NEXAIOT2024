@@ -120,6 +120,19 @@
             </div>
         </div>
         <canvas id="qr-canvas" width="800" height="1000" style="width: 800px; height: 1000px;"></canvas>
+        
+        <script>
+            function openLink(event) {
+                event.preventDefault(); // 阻止默認的連結行為
+        
+                // 獲取連結的 href
+                var linkHref = event.target.parentElement.href;
+        
+                // 使用 window.open 開啟新的視窗
+                window.open(linkHref, '_self'); // '_self' 表示在當前窗口中打開
+            }
+        </script>
+        
         <script type="text/javascript">load();</script>
 
 
